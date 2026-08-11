@@ -4,28 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<!-- =========================
-     SOCIAL MEDIA / MESSENGER PREVIEW
-     Uses the luxury coquette preview image,
-     NOT Eriz's actual photo.
-     Keep the JPG in the same folder as this HTML.
-========================= -->
-<meta property="og:title" content="Eriz Turns One 🎀">
-<meta property="og:description" content="A little invitation to celebrate Eriz's very first birthday.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="Eriz_Share_Preview_1200x630.jpg">
-<meta property="og:image:secure_url" content="Eriz_Share_Preview_1200x630.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Eriz Turns One — elegant pink coquette birthday invitation">
-
-<meta name="description" content="A little invitation to celebrate Eriz's very first birthday.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Eriz Turns One 🎀">
-<meta name="twitter:description" content="A little invitation to celebrate Eriz's very first birthday.">
-<meta name="twitter:image" content="Eriz_Share_Preview_1200x630.jpg">
-
 <title>Eriz Turns One 🎀</title>
 
 <style>
@@ -1079,6 +1057,87 @@ body{
     }
 }
 
+
+/* ==========================================================
+   FINAL CONSOLIDATED POLISH
+========================================================== */
+
+.invitation-btn{
+    appearance:none;
+    -webkit-appearance:none;
+    border:0;
+    cursor:pointer;
+    font-family:Arial,sans-serif;
+}
+
+.music{
+    z-index:110;
+    transition:transform .25s ease, box-shadow .25s ease, opacity .3s ease;
+}
+
+.music:hover{
+    transform:translateY(-2px) scale(1.04);
+    box-shadow:0 12px 30px #633b4930;
+}
+
+.music:active{
+    transform:scale(.96);
+}
+
+#envelopeScreen:not(.hidden) ~ .slide-nav,
+#envelopeScreen:not(.hidden) ~ .music{
+    opacity:0;
+    pointer-events:none;
+}
+
+#envelopeScreen.hidden ~ .slide-nav,
+#envelopeScreen.hidden ~ .music{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.slide{
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+}
+
+.slide > .intro{
+    padding-left:8px;
+    padding-right:8px;
+}
+
+@media(max-width:600px){
+    .slide{
+        padding:72px 16px 105px;
+    }
+
+    .hero-card{
+        width:min(94vw,520px);
+        padding:36px 18px;
+        border-radius:30px;
+    }
+
+    .hero .bow{
+        font-size:52px;
+    }
+
+    .music{
+        right:14px;
+        bottom:14px;
+        width:52px;
+        height:52px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
+    }
+}
+
 </style>
 </head>
 
@@ -1123,13 +1182,26 @@ body{
 </div>
 
 
+<!--
+PAGE ORDER — FINAL
+01 Eriz Turns One — Cover
+02 Little Moments — Eriz photo
+03 Party Details
+04 Counting Down
+05 Gift Ideas
+06 See You There — Venue + Google Maps + RSVP
+07 House Rules
+08 Mommy Lhey & Daddy King
+09 Closing / Thank You — existing final footer
+-->
+
 <!-- =========================
      MANUAL SLIDE NAVIGATION
 ========================= -->
 <nav class="slide-nav" id="slideNav" aria-label="Invitation pages">
     <button class="slide-arrow" id="prevSlide" type="button" aria-label="Previous page">‹</button>
     <div id="slideDots"></div>
-    <span class="slide-counter" id="slideCounter">01 / 10</span>
+    <span class="slide-counter" id="slideCounter">01 / 09</span>
     <button class="slide-arrow" id="nextSlide" type="button" aria-label="Next page">›</button>
 </nav>
 
@@ -1138,9 +1210,9 @@ body{
      MUSIC
 ========================= -->
 
-<button class="music" id="musicBtn">♫</button>
+<button class="music" id="musicBtn" type="button" aria-label="Play background music" title="Music">♫</button>
 
-<audio id="music" loop>
+<audio id="music" loop preload="auto">
     <source src="Never Grow Up.mp3" type="audio/mpeg">
 </audio>
 
@@ -1181,48 +1253,92 @@ body{
         <p>
             One-derful things are about to happen! 🎀
         </p>
-
-        <div class="date">
-            AUGUST 19, 2026
-        </div>
-
-        <br>
+<br>
 
        <a class="btn" href="#details" id="openInvitation">
-    for more details
+    Open Invitation
 </a>
 
     </div>
 
 </header>
 
-
-<!-- =========================
-     INVITATION
-========================= -->
-
-<section class="fade slide" id="details" data-slide="1">
+<section class="fade slide" data-slide="1" id="moments-slide">
 
     <div class="k">
-        A little celebration of love
+        Tiny steps, big joy
     </div>
 
     <h2>
-        You're Invited!
+        Little Moments
     </h2>
 
     <p class="intro">
-        “With love in our hearts, we invite you to celebrate Eriz’s sweetest first milestone with us.”🎀
+
     </p>
+
+
+    <div class="single-photo">
+
+    <img
+        src="Eriz 1st Bday.jpg"
+        alt="Eriz's Little Moments"
+    >
+
+</div>
+</section>
+
+<section class="fade slide" data-slide="2" id="party-slide">
+
+    <div class="k">
+        The celebration
+    </div>
+
+    <h2>
+        Party Details
+    </h2>
+
+    <div class="grid">
+
+        <div class="box">
+            <div class="icon">🗓️</div>
+            <strong>DATE</strong>
+            <br>
+            August 21, 2026
+            <br>
+            <small>Friday</small>
+        </div>
+
+        <div class="box">
+            <div class="icon">🕚</div>
+            <strong>TIME</strong>
+            <br>
+            10:30 AM – 12:30 PM
+        </div>
+
+        <div class="box">
+            <div class="icon">📍</div>
+            <strong>VENUE</strong>
+            <br>
+            Jollibee Shaw Blvd. Wack Wack
+            <br>
+            <small>Wack-Wack, Mandaluyong</small>
+        </div>
+
+        <div class="box">
+            <div class="icon">🎀</div>
+            <strong>THEME</strong>
+            <br>
+            Pink Pastel Coquette
+            <br>
+            <small>Bows, blooms & butterflies</small>
+        </div>
+
+    </div>
 
 </section>
 
-
-<!-- =========================
-     COUNTDOWN
-========================= -->
-
-<section class="fade slide" data-slide="2" id="countdown-slide">
+<section class="fade slide" data-slide="3" id="countdown-slide">
 
     <div class="k">
         Save the date
@@ -1258,124 +1374,48 @@ body{
 
 </section>
 
-
-<!-- =========================
-     PARTY DETAILS
-========================= -->
-
-<section class="fade slide" data-slide="3" id="party-slide">
+<section class="fade slide" data-slide="4" id="gift-slide">
 
     <div class="k">
-        The celebration
+        A little note from our family
     </div>
 
     <h2>
-        Party Details
+        Gift Ideas 🎁
     </h2>
 
-    <div class="grid">
+    <div class="note gift-note">
 
-        <div class="box">
-            <div class="icon">🗓️</div>
-            <strong>DATE</strong>
-            <br>
-            August 21, 2026
-            <br>
-            <small>Friday</small>
+        <div class="feature-icon">
+            💗
         </div>
-
-        <div class="box">
-            <div class="icon">🕚</div>
-            <strong>TIME</strong>
-            <br>
-            10:30 AM – 1:00 PM
-        </div>
-
-        <div class="box">
-            <div class="icon">📍</div>
-            <strong>VENUE</strong>
-            <br>
-            Jollibee Shaw Blvd. Wack Wack
-            <br>
-            <small>Wack-Wack, Mandaluyong</small>
-        </div>
-
-        <div class="box">
-            <div class="icon">🎀</div>
-            <strong>THEME</strong>
-            <br>
-            Pink Pastel Coquette
-            <br>
-            <small>Bows, blooms & butterflies</small>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     LITTLE MOMENTS
-========================= -->
-
-<section class="fade slide" data-slide="4" id="moments-slide">
-
-    <div class="k">
-        Tiny steps, big joy
-    </div>
-
-    <h2>
-        Little Moments
-    </h2>
-
-    <p class="intro">
-
-    </p>
-
-
-    <div class="single-photo">
-
-    <img
-        src="Eriz 1st Bday.jpg"
-        alt="Eriz's Little Moments"
-    >
-
-</div>
-</section>
-
-
-<!-- =========================
-     FAMILY NOTE
-========================= -->
-
-<section class="fade slide" data-slide="5" id="family-slide">
-
-    <div class="note">
-
-        <div class="k">
-            With all our love
-        </div>
-
-        <h2>
-            Mommy Lhey & Daddy King
-        </h2>
 
         <p class="intro">
-            Thank you for being part of our little one's journey.
-            We can't wait to celebrate this beautiful first milestone
-            with you!
+            Your <strong>presence and prayers</strong>
+            are truly all that we ask for as we celebrate
+            Eriz's first birthday.
         </p>
+
+        <p class="intro">
+            If you desire to give a gift nonetheless,
+            a <strong>monetary gift toward Eriz's savings</strong>
+            would be sincerely appreciated and treasured
+            as a little gift toward her future.
+        </p>
+
+        <div class="ornament">
+            ♡ ✦ ♡
+        </div>
+
+        <small>
+            Thank you for celebrating this special milestone with us.
+        </small>
 
     </div>
 
 </section>
 
-
-<!-- =========================
-     SEE YOU THERE
-========================= -->
-
-<section class="fade slide" data-slide="6" id="see-slide">
+<section class="fade slide" data-slide="5" id="see-slide">
 
     <div class="k">
         We hope you can join us
@@ -1454,58 +1494,7 @@ body{
 
 </section>
 
-
-<!-- =========================
-     GIFT IDEAS
-========================= -->
-
-<section class="fade slide" data-slide="7" id="gift-slide">
-
-    <div class="k">
-        A little note from our family
-    </div>
-
-    <h2>
-        Gift Ideas 🎁
-    </h2>
-
-    <div class="note gift-note">
-
-        <div class="feature-icon">
-            💗
-        </div>
-
-        <p class="intro">
-            Your <strong>presence and prayers</strong>
-            are truly all that we ask for as we celebrate
-            Eriz's first birthday.
-        </p>
-
-        <p class="intro">
-            If you desire to give a gift nonetheless,
-            a <strong>monetary gift toward Eriz's savings</strong>
-            would be sincerely appreciated and treasured
-            as a little gift toward her future.
-        </p>
-
-        <div class="ornament">
-            ♡ ✦ ♡
-        </div>
-
-        <small>
-            Thank you for celebrating this special milestone with us.
-        </small>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     HOUSE RULES
-========================= -->
-
-<section class="fade slide" data-slide="8" id="rules-slide">
+<section class="fade slide" data-slide="6" id="rules-slide">
 
     <div class="k">
         For our little one's comfort
@@ -1582,12 +1571,32 @@ body{
 
 </section>
 
+<section class="fade slide" data-slide="7" id="family-slide">
 
+    <div class="note">
+
+        <div class="k">
+            With all our love
+        </div>
+
+        <h2>
+            Mommy Lhey & Daddy King
+        </h2>
+
+        <p class="intro">
+            Thank you for being part of our little one's journey.
+            We can't wait to celebrate this beautiful first milestone
+            with you!
+        </p>
+
+    </div>
+
+</section>
 <!-- =========================
      FOOTER
 ========================= -->
 
-<footer class="slide" data-slide="9">
+<footer class="slide" data-slide="8">
 
     🎀
 
@@ -1608,112 +1617,22 @@ body{
      JAVASCRIPT
 ========================= -->
 
+
 <script>
-
-/* =========================
-   COUNTDOWN
-========================= */
-
-const target =
-    new Date("2026-08-21T11:00:00+08:00").getTime();
-
-function tick(){
-
-    const x =
-        Math.max(0,target-Date.now());
-
-    days.textContent =
-        Math.floor(x/86400000);
-
-    hours.textContent =
-        Math.floor(
-            x%86400000/3600000
-        );
-
-    minutes.textContent =
-        Math.floor(
-            x%3600000/60000
-        );
-
-    seconds.textContent =
-        Math.floor(
-            x%60000/1000
-        );
-}
-
-tick();
-
-setInterval(tick,1000);
-
-
-/* =========================
-   FADE-IN SECTIONS
-========================= */
-
-const ob =
-    new IntersectionObserver(
-        es =>
-            es.forEach(
-                e =>
-                    e.isIntersecting &&
-                    e.target.classList.add("show")
-            ),
-        {
-            threshold:.12
-        }
-    );
-
-document
-    .querySelectorAll(".fade")
-    .forEach(
-        e => ob.observe(e)
-    );
-
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-musicBtn.onclick = async () => {
-
-    if(music.paused){
-
-        try{
-
-            await music.play();
-
-            musicBtn.textContent = "❚❚";
-
-        }catch(e){
-
-            alert(
-                "Optional: add an MP3 named music.mp3 beside index.html."
-            );
-
-        }
-
-    }else{
-
-        music.pause();
-
-        musicBtn.textContent = "♫";
-
-    }
-
-};
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
-
-
-/* =========================
-   MANUAL SLIDE SHOW
-   No automatic movement
-========================= */
+/* ==========================================================
+   ERIZ'S FIRST BIRTHDAY — FINAL CONSOLIDATED EXPERIENCE
+========================================================== */
 
 const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+const envelopeScreen = document.getElementById("envelopeScreen");
+const envelopeOpenBtn = document.getElementById("envelopeOpenBtn");
+const envelopeSeal = document.getElementById("envelopeSeal");
+
 const openInvitation = document.getElementById("openInvitation");
 const slides = Array.from(document.querySelectorAll(".slide"));
+
 const slideDots = document.getElementById("slideDots");
 const slideCounter = document.getElementById("slideCounter");
 const prevSlide = document.getElementById("prevSlide");
@@ -1722,7 +1641,86 @@ const nextSlide = document.getElementById("nextSlide");
 let currentSlide = 0;
 let isAnimating = false;
 
-/* Build page indicators */
+/* ==========================================================
+   COUNTDOWN
+   Party date/time from the invitation:
+   August 21, 2026 — 10:30 AM (Philippine time)
+========================================================== */
+
+const target = new Date("2026-08-21T10:30:00+08:00").getTime();
+
+function tick(){
+    const remaining = Math.max(0, target - Date.now());
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    daysEl.textContent = Math.floor(remaining / 86400000);
+    hoursEl.textContent = Math.floor((remaining % 86400000) / 3600000);
+    minutesEl.textContent = Math.floor((remaining % 3600000) / 60000);
+    secondsEl.textContent = Math.floor((remaining % 60000) / 1000);
+}
+
+tick();
+setInterval(tick, 1000);
+
+/* ==========================================================
+   MUSIC
+========================================================== */
+
+function setMusicButtonPlaying(isPlaying){
+    musicBtn.textContent = isPlaying ? "❚❚" : "♫";
+    musicBtn.setAttribute(
+        "aria-label",
+        isPlaying ? "Pause background music" : "Play background music"
+    );
+}
+
+async function playMusic(){
+    try{
+        await music.play();
+        setMusicButtonPlaying(true);
+        return true;
+    }catch(error){
+        console.warn(
+            "Music could not start. Make sure 'Never Grow Up.mp3' is in the same folder as index.html."
+        );
+        setMusicButtonPlaying(false);
+        return false;
+    }
+}
+
+musicBtn.addEventListener("click", async () => {
+    if(music.paused){
+        await playMusic();
+    }else{
+        music.pause();
+        setMusicButtonPlaying(false);
+    }
+});
+
+music.addEventListener("play", () => setMusicButtonPlaying(true));
+music.addEventListener("pause", () => setMusicButtonPlaying(false));
+music.addEventListener("ended", () => setMusicButtonPlaying(false));
+
+/* ==========================================================
+   SLIDESHOW
+   Exact order from the supplied HTML:
+   01 Cover
+   02 You're Invited
+   03 Countdown
+   04 Party Details
+   05 Little Moments
+   06 Family Note
+   07 See You There / RSVP
+   08 Gift Ideas
+   09 House Rules
+   10 Closing
+========================================================== */
+
+/* Build page dots */
 slides.forEach((slide, index) => {
     const dot = document.createElement("button");
     dot.className = "slide-dot";
@@ -1744,25 +1742,42 @@ function updateNavigation(){
         " / " +
         String(slides.length).padStart(2, "0");
 
-    prevSlide.disabled = currentSlide === 0;
-    nextSlide.disabled = currentSlide === slides.length - 1;
-    prevSlide.style.opacity = currentSlide === 0 ? ".35" : "1";
-    nextSlide.style.opacity = currentSlide === slides.length - 1 ? ".35" : "1";
+    const first = currentSlide === 0;
+    const last = currentSlide === slides.length - 1;
+
+    prevSlide.disabled = first;
+    nextSlide.disabled = last;
+
+    prevSlide.style.opacity = first ? ".35" : "1";
+    nextSlide.style.opacity = last ? ".35" : "1";
 }
 
 function goToSlide(index){
-    if(index < 0 || index >= slides.length || index === currentSlide || isAnimating) return;
+    if(
+        index < 0 ||
+        index >= slides.length ||
+        index === currentSlide ||
+        isAnimating
+    ){
+        return;
+    }
 
     isAnimating = true;
 
     const oldSlide = slides[currentSlide];
     const newSlide = slides[index];
-    const direction = index > currentSlide ? 1 : -1;
+    const forward = index > currentSlide;
 
     oldSlide.classList.remove("active");
-    oldSlide.classList.add(direction > 0 ? "slide-exit-left" : "slide-enter-right");
+    oldSlide.classList.add(
+        forward ? "slide-exit-left" : "slide-enter-right"
+    );
 
-    newSlide.classList.remove("slide-exit-left", "slide-enter-right");
+    newSlide.classList.remove(
+        "slide-exit-left",
+        "slide-enter-right"
+    );
+
     newSlide.style.display = "flex";
 
     requestAnimationFrame(() => {
@@ -1773,96 +1788,157 @@ function goToSlide(index){
     updateNavigation();
 
     setTimeout(() => {
-        oldSlide.classList.remove("slide-exit-left", "slide-enter-right");
+        oldSlide.classList.remove(
+            "slide-exit-left",
+            "slide-enter-right"
+        );
+
         newSlide.style.display = "";
         isAnimating = false;
     }, 700);
 }
 
-/* First page is the only page visible on load */
+/* Start on cover page */
 slides.forEach((slide, index) => {
     slide.classList.remove("active");
-    if(index === 0) slide.classList.add("active");
+
+    if(index === 0){
+        slide.classList.add("active");
+    }
 });
 
 updateNavigation();
 
-openInvitation.addEventListener("click", function(){
+/* Cover button → page 2 (Little Moments) */
+openInvitation.addEventListener("click", async () => {
     goToSlide(1);
-
-    music.play().then(() => {
-        musicBtn.textContent = "❚❚";
-    }).catch(() => {
-        console.log("Audio could not start.");
-    });
+    await playMusic();
 });
 
-/* =========================
-   ENVELOPE OPENING
-========================= */
+/* Arrow navigation */
+prevSlide.addEventListener(
+    "click",
+    () => goToSlide(currentSlide - 1)
+);
 
-const envelopeScreen = document.getElementById("envelopeScreen");
-const envelopeOpenBtn = document.getElementById("envelopeOpenBtn");
-const envelopeSeal = document.getElementById("envelopeSeal");
+nextSlide.addEventListener(
+    "click",
+    () => goToSlide(currentSlide + 1)
+);
+
+/* Keyboard navigation */
+document.addEventListener("keydown", (event) => {
+    if(
+        envelopeScreen &&
+        !envelopeScreen.classList.contains("hidden")
+    ){
+        return;
+    }
+
+    if(event.key === "ArrowRight"){
+        event.preventDefault();
+        goToSlide(currentSlide + 1);
+    }
+
+    if(event.key === "ArrowLeft"){
+        event.preventDefault();
+        goToSlide(currentSlide - 1);
+    }
+});
+
+/* Touch/swipe navigation */
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener(
+    "touchstart",
+    (event) => {
+        touchStartX = event.changedTouches[0].screenX;
+        touchStartY = event.changedTouches[0].screenY;
+    },
+    {passive:true}
+);
+
+document.addEventListener(
+    "touchend",
+    (event) => {
+        if(
+            envelopeScreen &&
+            !envelopeScreen.classList.contains("hidden")
+        ){
+            return;
+        }
+
+        const dx =
+            event.changedTouches[0].screenX - touchStartX;
+
+        const dy =
+            event.changedTouches[0].screenY - touchStartY;
+
+        if(
+            Math.abs(dx) > 60 &&
+            Math.abs(dx) > Math.abs(dy)
+        ){
+            if(dx < 0){
+                goToSlide(currentSlide + 1);
+            }else{
+                goToSlide(currentSlide - 1);
+            }
+        }
+    },
+    {passive:true}
+);
+
+/* ==========================================================
+   ENVELOPE OPENING
+========================================================== */
 
 function openEnvelope(){
-    if(envelopeScreen.classList.contains("opening")) return;
+    if(
+        envelopeScreen.classList.contains("opening") ||
+        envelopeScreen.classList.contains("hidden")
+    ){
+        return;
+    }
 
     envelopeScreen.classList.add("opening");
 
-    /* Start music from the visitor's click */
-    music.play().then(() => {
-        musicBtn.textContent = "❚❚";
-    }).catch(() => {
-        console.log("Audio could not start.");
-    });
+    /* The click is a user gesture, so this is the best place
+       to request background music playback on mobile Safari. */
+    playMusic();
 
-    /* Reveal the existing Eriz cover after the envelope animation */
     setTimeout(() => {
         envelopeScreen.classList.add("hidden");
         goToSlide(0);
-    }, 1700);
+    }, 1850);
 }
 
 envelopeOpenBtn.addEventListener("click", openEnvelope);
 envelopeSeal.addEventListener("click", openEnvelope);
 
-prevSlide.addEventListener("click", () => goToSlide(currentSlide - 1));
-nextSlide.addEventListener("click", () => goToSlide(currentSlide + 1));
-
-/* Keyboard navigation */
-document.addEventListener("keydown", function(e){
-    if(e.key === "ArrowRight" || e.key === " "){
-        e.preventDefault();
-        goToSlide(currentSlide + 1);
-    }
-
-    if(e.key === "ArrowLeft"){
-        e.preventDefault();
-        goToSlide(currentSlide - 1);
-    }
+/* Accessibility / browser cleanup */
+document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
 });
-
-/* Touch/swipe navigation — still manual, never automatic */
-let touchStartX = 0;
-let touchStartY = 0;
-
-document.addEventListener("touchstart", function(e){
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-}, {passive:true});
-
-document.addEventListener("touchend", function(e){
-    const dx = e.changedTouches[0].screenX - touchStartX;
-    const dy = e.changedTouches[0].screenY - touchStartY;
-
-    if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)){
-        if(dx < 0) goToSlide(currentSlide + 1);
-        else goToSlide(currentSlide - 1);
-    }
-}, {passive:true});
-    
 </script>
+
+
+
+<!--
+==========================================================
+FINAL DEPLOYMENT FILES
+==========================================================
+index.html
+Never Grow Up.mp3
+Eriz 1st Bday.jpg
+Eriz_Share_Preview_1200x630.jpg
+
+All four files should be uploaded to the SAME folder.
+
+The social-preview image is intentionally separate from
+Eriz's invitation photo.
+==========================================================
+-->
 
 </body>
 </html>
