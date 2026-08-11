@@ -1157,6 +1157,18 @@ musicBtn.onclick = async () => {
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
+
+const music = document.getElementById("music");
+const openInvitation = document.getElementById("openInvitation");
+
+openInvitation.addEventListener("click", function () {
+
+    music.play().catch(function(error) {
+        console.log("Audio could not start:", error);
+    });
+
+});
+    
 </script>
 
 </body>
