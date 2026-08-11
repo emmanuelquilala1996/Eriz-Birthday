@@ -582,10 +582,535 @@ img {
     border-radius: 20px;
 }
         
+
+
+/* =========================
+   ENVELOPE OPENING EXPERIENCE
+========================= */
+
+#envelopeScreen{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 20% 20%, #f7c7d555, transparent 30%),
+        radial-gradient(circle at 80% 75%, #f8df9c55, transparent 28%),
+        linear-gradient(135deg,#fffaf7 0%,#ffe8ef 52%,#fff5dc 100%);
+    transition:opacity 1s ease, visibility 1s ease;
+}
+
+#envelopeScreen.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.envelope-sparkles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.envelope-sparkles span{
+    position:absolute;
+    color:#d98ca2;
+    opacity:.45;
+    animation:floatSparkle 4s ease-in-out infinite;
+}
+
+.envelope-sparkles span:nth-child(1){left:14%;top:18%;font-size:18px}
+.envelope-sparkles span:nth-child(2){right:17%;top:24%;font-size:13px;animation-delay:.8s}
+.envelope-sparkles span:nth-child(3){left:22%;bottom:22%;font-size:12px;animation-delay:1.5s}
+.envelope-sparkles span:nth-child(4){right:22%;bottom:18%;font-size:19px;animation-delay:2s}
+.envelope-sparkles span:nth-child(5){left:50%;top:10%;font-size:11px;animation-delay:2.6s}
+
+@keyframes floatSparkle{
+    0%,100%{transform:translateY(0) rotate(0deg);opacity:.3}
+    50%{transform:translateY(-12px) rotate(12deg);opacity:.75}
+}
+
+.envelope-stage{
+    position:relative;
+    width:min(520px,88vw);
+    height:520px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.envelope-copy{
+    position:absolute;
+    top:18px;
+    left:0;
+    right:0;
+    text-align:center;
+    z-index:20;
+}
+
+.envelope-copy .mini{
+    font:700 10px Arial,sans-serif;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:var(--deep);
+}
+
+.envelope-copy h2{
+    margin:8px 0 0;
+    font-size:clamp(2.2rem,8vw,4rem);
+}
+
+.envelope{
+    position:absolute;
+    top:150px;
+    width:min(430px,82vw);
+    height:285px;
+    perspective:1000px;
+    filter:drop-shadow(0 25px 35px #633b4930);
+}
+
+.envelope-back{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(145deg,#fffdfb,#f8dce5);
+    border:1px solid #e8b7c5;
+    border-radius:8px;
+    overflow:hidden;
+}
+
+.envelope-back:after{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid #e8c1cc;
+    pointer-events:none;
+}
+
+.envelope-flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:62%;
+    z-index:8;
+    background:linear-gradient(145deg,#fffaf8,#f5cfd9);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:50% 0;
+    transition:transform 1s cubic-bezier(.2,.75,.2,1);
+    filter:drop-shadow(0 2px 2px #633b4915);
+}
+
+.envelope-front{
+    position:absolute;
+    inset:0;
+    z-index:6;
+    pointer-events:none;
+}
+
+.envelope-front:before,
+.envelope-front:after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    width:71%;
+    height:72%;
+    background:#f9dfe6;
+}
+
+.envelope-front:before{
+    left:0;
+    clip-path:polygon(0 100%,0 0,100% 100%);
+}
+
+.envelope-front:after{
+    right:0;
+    clip-path:polygon(100% 100%,100% 0,0 100%);
+}
+
+.envelope-card{
+    position:absolute;
+    left:7%;
+    right:7%;
+    bottom:18px;
+    height:235px;
+    z-index:4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:#fffdfb;
+    border:1px solid #e8c1cc;
+    border-radius:6px;
+    box-shadow:0 8px 25px #633b4918;
+    transition:transform 1.1s cubic-bezier(.2,.75,.2,1), opacity .5s ease;
+}
+
+.envelope-card-content{
+    padding:20px;
+}
+
+.envelope-card-content .bow{
+    font-size:38px;
+}
+
+.envelope-card-content .card-name{
+    font:italic 700 35px "Playfair Display",serif;
+    color:var(--deep);
+}
+
+.envelope-card-content small{
+    display:block;
+    margin-top:5px;
+    font:700 9px Arial,sans-serif;
+    letter-spacing:3px;
+    color:#8c6370;
+}
+
+.seal{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:15;
+    width:78px;
+    height:78px;
+    border-radius:50%;
+    border:4px solid #f7d8df;
+    background:radial-gradient(circle at 35% 30%,#ef9eb4,#c96887 75%);
+    color:#fff;
+    display:grid;
+    place-items:center;
+    box-shadow:0 7px 18px #633b4930;
+    cursor:pointer;
+    transition:transform .4s ease,opacity .5s ease;
+}
+
+.seal:before{
+    content:"E";
+    font:italic 700 31px "Playfair Display",serif;
+    text-shadow:1px 2px #8d3f5a55;
+}
+
+.seal:after{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border:1px solid #dca5b5;
+    border-radius:50%;
+    opacity:.7;
+}
+
+.envelope-open-btn{
+    position:absolute;
+    bottom:5px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:30;
+    border:1px solid #e2a9b9;
+    background:#fffdfb;
+    color:var(--deep);
+    padding:13px 26px;
+    border-radius:999px;
+    font:700 10px Arial,sans-serif;
+    letter-spacing:2.5px;
+    cursor:pointer;
+    box-shadow:0 7px 22px #633b4920;
+    transition:.3s ease;
+}
+
+.envelope-open-btn:hover{
+    transform:translateX(-50%) translateY(-3px);
+    box-shadow:0 12px 28px #633b4930;
+    background:#fff6f8;
+}
+
+/* Open animation */
+#envelopeScreen.opening .envelope-flap{
+    transform:rotateX(180deg);
+    z-index:3;
+}
+
+#envelopeScreen.opening .envelope-card{
+    transform:translateY(-185px);
+}
+
+#envelopeScreen.opening .seal{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(1.35);
+}
+
+#envelopeScreen.opening .envelope-open-btn{
+    opacity:0;
+    pointer-events:none;
+}
+
+#envelopeScreen.opening .envelope-copy{
+    opacity:0;
+    transform:translateY(-15px);
+    transition:.6s ease;
+}
+
+#envelopeScreen.opening .envelope{
+    animation:envelopeLift 1.7s ease forwards;
+}
+
+@keyframes envelopeLift{
+    0%{transform:scale(1)}
+    72%{transform:scale(1.03)}
+    100%{transform:scale(1.08)}
+}
+
+#envelopeScreen.opening .envelope-stage:after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:radial-gradient(circle,#fff8 0 18%,transparent 65%);
+    animation:cardGlow 1.3s ease forwards;
+    pointer-events:none;
+}
+
+@keyframes cardGlow{
+    0%{opacity:0;transform:scale(.5)}
+    50%{opacity:.8}
+    100%{opacity:0;transform:scale(1.6)}
+}
+
+@media(max-width:500px){
+    .envelope-stage{height:500px}
+    .envelope{top:145px}
+    .envelope-copy{top:10px}
+    .envelope-open-btn{bottom:8px}
+}
+
+/* =========================
+   CINEMATIC INVITATION SLIDES
+   Manual navigation — no scrolling
+========================= */
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    min-height:100vh;
+}
+
+.slide{
+    position:absolute !important;
+    inset:0;
+    width:100% !important;
+    max-width:none !important;
+    min-height:100vh;
+    height:100vh;
+    margin:0 !important;
+    overflow-y:auto;
+    overflow-x:hidden;
+    display:none !important;
+    opacity:0;
+    transform:translateX(45px) scale(.985);
+    transition:opacity .65s ease, transform .65s ease;
+    z-index:1;
+}
+
+.slide.active{
+    display:flex !important;
+    flex-direction:column;
+    justify-content:center;
+    opacity:1;
+    transform:translateX(0) scale(1);
+    z-index:5;
+}
+
+.hero.slide.active{
+    display:flex !important;
+}
+
+.slide.slide-exit-left{
+    opacity:0;
+    transform:translateX(-45px) scale(.985);
+}
+
+.slide.slide-enter-right{
+    opacity:0;
+    transform:translateX(45px) scale(.985);
+}
+
+/* Keep content comfortably centered inside slides */
+.slide > *{
+    flex-shrink:0;
+}
+
+/* Elegant manual navigation */
+.slide-nav{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+    z-index:100;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 14px;
+    border:1px solid #ffffffb8;
+    border-radius:999px;
+    background:#fffdfad9;
+    backdrop-filter:blur(12px);
+    box-shadow:0 10px 35px #633b4920;
+}
+
+#slideDots{display:flex;align-items:center;gap:6px}
+
+.slide-dot{
+    width:7px;
+    height:7px;
+    padding:0;
+    border:0;
+    border-radius:50%;
+    background:#dfb5c1;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.slide-dot.active{
+    width:22px;
+    border-radius:999px;
+    background:var(--deep);
+}
+
+.slide-arrow{
+    width:34px;
+    height:34px;
+    border:1px solid #e7b7c5;
+    border-radius:50%;
+    background:#fff;
+    color:var(--deep);
+    cursor:pointer;
+    font-size:16px;
+    transition:.25s ease;
+}
+
+.slide-arrow:hover{
+    transform:scale(1.08);
+    background:#fff4f7;
+}
+
+.slide-counter{
+    font:700 10px Arial,sans-serif;
+    letter-spacing:1px;
+    color:var(--deep);
+    min-width:42px;
+    text-align:center;
+}
+
+/* Elegant first-page entrance */
+.hero .hero-card{
+    animation:heroFloat 4s ease-in-out infinite;
+}
+
+@keyframes heroFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-7px)}
+}
+
+.invitation-btn{
+    border:0;
+    cursor:pointer;
+    font-family:Arial,sans-serif;
+}
+
+.slide-hint{
+    margin-top:22px;
+    font:700 9px Arial,sans-serif;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#9a6877;
+    opacity:.75;
+}
+
+@media(max-width:600px){
+    .slide-nav{
+        bottom:12px;
+        gap:6px;
+        padding:7px 10px;
+    }
+
+    .slide-arrow{
+        width:31px;
+        height:31px;
+    }
+
+    .slide-dot{
+        width:6px;
+        height:6px;
+    }
+
+    .slide-dot.active{
+        width:18px;
+    }
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- =========================
+     ENVELOPE OPENING SCREEN
+========================= -->
+<div id="envelopeScreen" aria-label="Open Eriz's birthday invitation">
+    <div class="envelope-sparkles" aria-hidden="true">
+        <span>✦</span><span>♡</span><span>✧</span><span>♡</span><span>✦</span>
+    </div>
+
+    <div class="envelope-stage">
+        <div class="envelope-copy">
+            <div class="mini">A little invitation for you</div>
+            <h2>You're Invited</h2>
+        </div>
+
+        <div class="envelope">
+            <div class="envelope-back"></div>
+
+            <div class="envelope-card">
+                <div class="envelope-card-content">
+                    <div class="bow">🎀</div>
+                    <div class="card-name">Eriz</div>
+                    <small>FIRST BIRTHDAY</small>
+                </div>
+            </div>
+
+            <div class="envelope-flap"></div>
+            <div class="envelope-front"></div>
+
+            <button class="seal" id="envelopeSeal" type="button"
+                    aria-label="Open invitation seal"></button>
+        </div>
+
+        <button class="envelope-open-btn" id="envelopeOpenBtn" type="button">
+            OPEN INVITATION
+        </button>
+    </div>
+</div>
+
+
+<!-- =========================
+     MANUAL SLIDE NAVIGATION
+========================= -->
+<nav class="slide-nav" id="slideNav" aria-label="Invitation pages">
+    <button class="slide-arrow" id="prevSlide" type="button" aria-label="Previous page">‹</button>
+    <div id="slideDots"></div>
+    <span class="slide-counter" id="slideCounter">01 / 10</span>
+    <button class="slide-arrow" id="nextSlide" type="button" aria-label="Next page">›</button>
+</nav>
+
 
 <!-- =========================
      MUSIC
@@ -602,7 +1127,7 @@ img {
      HERO
 ========================= -->
 
-<header class="hero">
+<header class="hero slide" data-slide="0">
 
     <div class="balloons">
         <i class="balloon b1"></i>
@@ -654,7 +1179,7 @@ img {
      INVITATION
 ========================= -->
 
-<section class="fade" id="details">
+<section class="fade slide" id="details" data-slide="1">
 
     <div class="k">
         A little celebration of love
@@ -675,7 +1200,7 @@ img {
      COUNTDOWN
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="2" id="countdown-slide">
 
     <div class="k">
         Save the date
@@ -716,7 +1241,7 @@ img {
      PARTY DETAILS
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="3" id="party-slide">
 
     <div class="k">
         The celebration
@@ -771,7 +1296,7 @@ img {
      LITTLE MOMENTS
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="4" id="moments-slide">
 
     <div class="k">
         Tiny steps, big joy
@@ -801,7 +1326,7 @@ img {
      FAMILY NOTE
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="5" id="family-slide">
 
     <div class="note">
 
@@ -828,7 +1353,7 @@ img {
      SEE YOU THERE
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="6" id="see-slide">
 
     <div class="k">
         We hope you can join us
@@ -912,7 +1437,7 @@ img {
      GIFT IDEAS
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="7" id="gift-slide">
 
     <div class="k">
         A little note from our family
@@ -958,7 +1483,7 @@ img {
      HOUSE RULES
 ========================= -->
 
-<section class="fade">
+<section class="fade slide" data-slide="8" id="rules-slide">
 
     <div class="k">
         For our little one's comfort
@@ -1040,7 +1565,7 @@ img {
      FOOTER
 ========================= -->
 
-<footer>
+<footer class="slide" data-slide="9">
 
     🎀
 
@@ -1158,16 +1683,162 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 });
 
+
+/* =========================
+   MANUAL SLIDE SHOW
+   No automatic movement
+========================= */
+
 const music = document.getElementById("music");
 const openInvitation = document.getElementById("openInvitation");
+const slides = Array.from(document.querySelectorAll(".slide"));
+const slideDots = document.getElementById("slideDots");
+const slideCounter = document.getElementById("slideCounter");
+const prevSlide = document.getElementById("prevSlide");
+const nextSlide = document.getElementById("nextSlide");
 
-openInvitation.addEventListener("click", function () {
+let currentSlide = 0;
+let isAnimating = false;
 
-    music.play().catch(function(error) {
-        console.log("Audio could not start:", error);
+/* Build page indicators */
+slides.forEach((slide, index) => {
+    const dot = document.createElement("button");
+    dot.className = "slide-dot";
+    dot.type = "button";
+    dot.setAttribute("aria-label", "Go to page " + (index + 1));
+    dot.addEventListener("click", () => goToSlide(index));
+    slideDots.appendChild(dot);
+});
+
+const dots = Array.from(slideDots.querySelectorAll(".slide-dot"));
+
+function updateNavigation(){
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
     });
 
+    slideCounter.textContent =
+        String(currentSlide + 1).padStart(2, "0") +
+        " / " +
+        String(slides.length).padStart(2, "0");
+
+    prevSlide.disabled = currentSlide === 0;
+    nextSlide.disabled = currentSlide === slides.length - 1;
+    prevSlide.style.opacity = currentSlide === 0 ? ".35" : "1";
+    nextSlide.style.opacity = currentSlide === slides.length - 1 ? ".35" : "1";
+}
+
+function goToSlide(index){
+    if(index < 0 || index >= slides.length || index === currentSlide || isAnimating) return;
+
+    isAnimating = true;
+
+    const oldSlide = slides[currentSlide];
+    const newSlide = slides[index];
+    const direction = index > currentSlide ? 1 : -1;
+
+    oldSlide.classList.remove("active");
+    oldSlide.classList.add(direction > 0 ? "slide-exit-left" : "slide-enter-right");
+
+    newSlide.classList.remove("slide-exit-left", "slide-enter-right");
+    newSlide.style.display = "flex";
+
+    requestAnimationFrame(() => {
+        newSlide.classList.add("active");
+    });
+
+    currentSlide = index;
+    updateNavigation();
+
+    setTimeout(() => {
+        oldSlide.classList.remove("slide-exit-left", "slide-enter-right");
+        newSlide.style.display = "";
+        isAnimating = false;
+    }, 700);
+}
+
+/* First page is the only page visible on load */
+slides.forEach((slide, index) => {
+    slide.classList.remove("active");
+    if(index === 0) slide.classList.add("active");
 });
+
+updateNavigation();
+
+openInvitation.addEventListener("click", function(){
+    goToSlide(1);
+
+    music.play().then(() => {
+        musicBtn.textContent = "❚❚";
+    }).catch(() => {
+        console.log("Audio could not start.");
+    });
+});
+
+/* =========================
+   ENVELOPE OPENING
+========================= */
+
+const envelopeScreen = document.getElementById("envelopeScreen");
+const envelopeOpenBtn = document.getElementById("envelopeOpenBtn");
+const envelopeSeal = document.getElementById("envelopeSeal");
+
+function openEnvelope(){
+    if(envelopeScreen.classList.contains("opening")) return;
+
+    envelopeScreen.classList.add("opening");
+
+    /* Start music from the visitor's click */
+    music.play().then(() => {
+        musicBtn.textContent = "❚❚";
+    }).catch(() => {
+        console.log("Audio could not start.");
+    });
+
+    /* Reveal the existing Eriz cover after the envelope animation */
+    setTimeout(() => {
+        envelopeScreen.classList.add("hidden");
+        goToSlide(0);
+    }, 1700);
+}
+
+envelopeOpenBtn.addEventListener("click", openEnvelope);
+envelopeSeal.addEventListener("click", openEnvelope);
+
+prevSlide.addEventListener("click", () => goToSlide(currentSlide - 1));
+nextSlide.addEventListener("click", () => goToSlide(currentSlide + 1));
+
+/* Keyboard navigation */
+document.addEventListener("keydown", function(e){
+    if(e.key === "ArrowRight" || e.key === " "){
+        e.preventDefault();
+        goToSlide(currentSlide + 1);
+    }
+
+    if(e.key === "ArrowLeft"){
+        e.preventDefault();
+        goToSlide(currentSlide - 1);
+    }
+});
+
+/* Touch/swipe navigation — still manual, never automatic */
+let touchStartX = 0;
+let touchStartY = 0;
+
+document.addEventListener("touchstart", function(e){
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, {passive:true});
+
+document.addEventListener("touchend", function(e){
+    const dx = e.changedTouches[0].screenX - touchStartX;
+    const dy = e.changedTouches[0].screenY - touchStartY;
+
+    if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)){
+        if(dx < 0) goToSlide(currentSlide + 1);
+        else goToSlide(currentSlide - 1);
+    }
+}, {passive:true});
     
 </script>
 
